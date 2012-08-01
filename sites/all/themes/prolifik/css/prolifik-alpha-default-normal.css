@@ -1,9 +1,11 @@
-/* @override http://shs.loc/sites/all/themes/prolifik/css/prolifik-alpha-default-normal.css?m67bl9 */
+/* @override 
+	http://shs.loc/sites/all/themes/prolifik/css/prolifik-alpha-default-normal.css?m67bl9
+	http://shc.loc/sites/all/themes/prolifik/css/prolifik-alpha-default-normal.css?m81jt9
+*/
 
 /* This file will hold styles that are loaded using the same media query as the normal grid. */
 
-#logo {
-
+#logo {width: 400px;
 }
 
 /* Search Form */
@@ -14,4 +16,16 @@
   top: 35px;
   width: 300px;
   z-index: 1;
+}
+
+nav.navigation ul.menu li.leaf {
+  display: none;
+}
+
+#block-block-8 div.content div.grid-6 a img.menu {
+	display: inline;
+	width: 125px;
+}
+div.wistia-odd {
+	max-width: 640px;
 }

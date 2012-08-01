@@ -1,10 +1,17 @@
-/* @override http://shc.loc/sites/all/themes/prolifik/css/prolifik-base.css?m7s440 */
+/* @override 
+	http://shc.loc/sites/all/themes/prolifik/css/prolifik-base.css?m7s440
+	http://shc.loc/sites/all/themes/prolifik/css/prolifik-base.css?m81jt9
+*/
 
 /* This file will hold the main styles for your website. */
 body {
 	background: url(../images/bg.jpg) repeat;
 }
 
+
+
+#logo {width: 200px;
+}
 
 /* Links */
 a, a:link {
@@ -143,7 +150,34 @@ ul.quicktabs-tabs li a {
 /* @end */
 
 #region-menu nav.navigation ul.menu li.leaf {
-  float: left;
-  display: block;
+  display: inline;
 }
+
+/* @group Front Page */
+
+div.wistia-odd {
+	width: 100%;
+}
+
+div.lesson {text-align: center;
+	font-size: 2em;
+}
+
+#block-block-8 div.content div.grid-6 {
+	text-align: center;
+	margin-right: 7px;
+	margin-left: 7px;
+}
+
+#block-block-8 div.content div.grid-6 a img.menu {
+	display: none;
+}
+
+#block-block-2 div.lesson a {
+	color: #eaeaea;
+}
+
+
+
+/* @end */
 

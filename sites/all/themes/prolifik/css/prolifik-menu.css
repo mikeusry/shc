@@ -3,6 +3,7 @@
 	http://hilton.loc/sites/all/themes/navin/css/prolifik-menu.css?m5cpcl
 	http://btcv.biz/sites/all/themes/prolifik/css/prolifik-menu.css?m5f2cd
 	http://hi-express.loc/sites/all/themes/navin/css/prolifik-menu.css?m5pnkk
+	http://shc.loc/sites/all/themes/prolifik/css/prolifik-menu.css?m81jt9
 */
 
 /* Menu */
@@ -35,12 +36,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0e3c7a', end
 }
 #region-menu nav > ul.menu > li {
   background: none;
-  float: none;
   list-style: none;
   margin: 0 5px 0 0;
   padding: 0;
   position: relative;
-  display: block;
 text-align: center;
 }
 #region-menu nav > ul.menu > li.last {

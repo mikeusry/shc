@@ -1,1 +1,11 @@
+/* @override http://shc.loc/sites/all/themes/prolifik/css/prolifik-alpha-default-wide.css?m81jt9 */
+
 /* This file will hold styles that are loaded using the same media query as the wide grid. */
+
+#logo {width: auto;
+}
+
+#block-block-8 div.content div.grid-6 a img.menu {
+	display: inline;
+	width: 150px;
+}
