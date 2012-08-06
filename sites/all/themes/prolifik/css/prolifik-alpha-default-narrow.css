@@ -31,4 +31,7 @@ nav.navigation ul.menu li.leaf {
 
 div.wistia-odd {
 	max-width: 640px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
 }

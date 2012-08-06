@@ -24,8 +24,11 @@ nav.navigation ul.menu li.leaf {
 
 #block-block-8 div.content div.grid-6 a img.menu {
 	display: inline;
-	width: 125px;
+	width: 100px;
 }
 div.wistia-odd {
 	max-width: 640px;
+	float: left;
+	margin-bottom: 60px;
+	margin-right: 20px;
 }
