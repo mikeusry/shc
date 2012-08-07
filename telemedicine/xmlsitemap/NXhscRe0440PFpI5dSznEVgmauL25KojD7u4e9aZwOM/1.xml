@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>http://default/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
-<url><loc>http://default/content/front-page-long-scroll</loc><lastmod>2012-07-26T17:50Z</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>http://default/content/contact-us</loc><lastmod>2012-07-26T16:51Z</lastmod><changefreq>weekly</changefreq></url>
-<url><loc>http://default/thank-you</loc><lastmod>2012-07-26T16:54Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://shc.loc/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+<url><loc>http://shc.loc/content/front-page-long-scroll</loc><lastmod>2012-07-26T17:50Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://shc.loc/content/contact-us</loc><lastmod>2012-07-26T16:51Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://shc.loc/thank-you</loc><lastmod>2012-07-26T16:54Z</lastmod><changefreq>weekly</changefreq></url>
+<url><loc>http://shc.loc/content/free-trial</loc><lastmod>2012-08-01T17:21Z</lastmod><changefreq>weekly</changefreq></url>
 </urlset>
