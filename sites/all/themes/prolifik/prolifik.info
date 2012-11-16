@@ -9,9 +9,6 @@ base theme = 'omega'
 scripts[] = 'js/global.js'
 scripts[] = 'js/SpryAccordion.js'
 scripts[] = 'js/SpryCollapsiblePanel.js'
-scripts[] = 'js/ScrollTO.js'
-scripts[] = 'js/LocalScroll.js'
-scripts[] = 'js/documentReady.js'
 
 ; Styles
 css[prolifik-base.css][name] = 'Prolifik: Base'

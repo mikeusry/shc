@@ -1,5 +1,12 @@
 <?php
 
+// Latest media version.
+// @TODO Remove conditional class definition.
+if (class_exists('MediaBrowserPlugin') && !class_exists('MediaBrowserLibrary')) {
+  abstract class MediaBrowserLibrary extends MediaBrowserPlugin {
+  }
+}
+
 class MediaBrowserPlusLibrary extends MediaBrowserLibrary {
 
   function view() {
@@ -8,10 +15,13 @@ class MediaBrowserPlusLibrary extends MediaBrowserLibrary {
 
     // Get plugin form.
     $upload_form = drupal_get_form('media_browser_plus_library_browser', $multiselect, $types);
-    return array(
-      '#title' => t('Library Plus'),
-      'form' => array($upload_form),
-    );
+    $upload_form['#title'] = t('Library Plus');
+
+    $upload_form['admin']['#markup'] .= l(t('Cancel'), '', array(
+      'attributes' => array('class' => array('button', 'fake-cancel', 'library_plus'))
+    ));
+
+    return $upload_form;
   }
 
 }

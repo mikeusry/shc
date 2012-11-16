@@ -1,0 +1,2 @@
+@media all and (min-width: 740px) and (min-device-width: 740px), (max-device-width: 800px) and (min-width: 740px) and (orientation:landscape){#logo{width:300px;}#block-search-form{margin:0;position:absolute;right:0;text-align:right;top:25px;width:300px;z-index:1;}nav.navigation ul.menu li.leaf{display:block;float:left;}#block-block-8 div.content div.grid-6 a img.menu{display:inline;width:100px;}div.wistia-odd{max-width:640px;margin-left:auto;margin-right:auto;margin-bottom:20px;}
+}

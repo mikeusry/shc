@@ -11,15 +11,19 @@
       var selectedPreviewItems = new Array();
       Drupal.behaviors.media_browser_folders.loadedMedia = new Array();
       // Load active folder
-      Drupal.behaviors.media_browser_folders.loadFolderContents($("div.folder_load:first"), 0);
-      $("div.folder_load:first").addClass('selectedFolder');
+      Drupal.behaviors.media_browser_folders.loadFolderContents($("ul.media-folder-list  li.selected"), 0);
       // Bind click handlers.
-      // toggle the display of subfolders
-      $( "div.folder-children-toggle" ).bind('click', Drupal.behaviors.media_browser_folders.toggleSubfolders);
+
+      // Toggle the display of subfolders
+      $("ul.media-folder-list li.parent div.icon").bind('click', Drupal.behaviors.media_browser_folders.toggleSubfolders);
+      // Close all folders.
+      $('ul.media-folder-list li.parent ul').addClass('hidden');
+      // Ensure the path to the selected folder is open.
+      $('ul.media-folder-list li.selected').parents('ul').removeClass('hidden');
       // remove old select assets
       $('div.media-thumbnails-select').remove();
       // folder content loading:
-      $('div.folder_load').bind('click', function( event ) {
+      $('li.folder').bind('click', function( event ) {
         // grab item
         var $item = $(this);
         // and load contents
@@ -27,7 +31,7 @@
         return false;
       });
       if(Drupal.settings.media_browser_plus.folder_dnd_enabled) {
-        $("div.folder_load").droppable({
+        $("li.folder div.drop").droppable({
           accept: "#media-thumb-list > li",
           drop: Drupal.behaviors.media_browser_folders.moveImage,
           over: function (event, ui) {
@@ -127,16 +131,17 @@
       });
     },
     // function which moves an image into a new folder
-    moveImage : function (event , ui) {
-      var folder = $(this);
-      if (folder.hasClass('selectedFolder')) {
+    moveImage: function (event , ui) {
+      var folder = $(this).parent();
+      $(this).removeClass('dragOverDrop');
+      if (folder.hasClass('selected')) {
         return;
       }
       var item = ui.draggable;
       // every image has an hidden input with its id inside its <li> tag
       var id = Drupal.behaviors.media_browser_folders.getId(item.attr('id'), 11);
+
       // remove the hover media over folder class
-      folder.removeClass('dragOverDrop');
       folder.removeClass('emptyFolder');
       folder.parent().children(":first-child").removeClass("emptyParent");
       folder.parent().children(":first-child").removeClass("empty");
@@ -148,7 +153,7 @@
       item.addClass("movedImage");
       item.fadeOut();
       if($('#media-thumb-list > li:not(.movedImage)').length - 2 <= 0){
-          var oldFolder = $('div.selectedFolder');
+          var oldFolder = $('li.selected');
           oldFolder.addClass('emptyFolder');
           if(folder.parent().children(":first-child").hasClass("emptyParent")){
             oldFolder.parent().children(":first-child").addClass("emptyParent");
@@ -209,13 +214,9 @@
       }
     },
     loadFolderContents: function ($item, $page) {
-      // check against double loading of the same folder
-      if($item.hasClass('selectedFolder') && $page == Drupal.settings.media_browser_plus.page) {
-        return;
-      }
-      $('.selectedFolder').removeClass('selectedFolder');
+      $('.selected').removeClass('selected');
       // Set folder as new active folder and set new page
-      $item.addClass('selectedFolder');
+      $item.addClass('selected');
       // Remove old pictures.
       $("#media-thumb-list > li").remove();
       var loading = '<li id="loading_media"><img src="'+Drupal.settings.media_browser_plus.images_url+'loading.gif" /><li>';
@@ -224,7 +225,11 @@
       // @TODO: add some kind of loading UI and failure handling here
       // and load in new ones
       $filter = Drupal.settings.media_browser_plus.filter;
-      $.getJSON(Drupal.settings.media_browser_plus.url + "?q=admin/content/file/thumbnailsJSON", {folder: $item.attr('id'), page : $page, filter : $filter}, Drupal.behaviors.media_browser_folders.folderContentsLoaded);
+      $path_prefix = '';
+      if (!Drupal.settings.media_browser_plus.clean_url) {
+        $path_prefix = '?q=';
+      }
+      $.getJSON(Drupal.settings.media_browser_plus.url + $path_prefix + "admin/content/file/thumbnailsJSON", {folder: $item.attr('id'), page : $page, filter : $filter}, Drupal.behaviors.media_browser_folders.folderContentsLoaded);
       // redo the pages menu
       Drupal.settings.media_browser_plus.page = $page;
     },
@@ -243,6 +248,10 @@
       $('#media_browser_plus_pages').append($page_item);
     },
     folderContentsLoaded: function (data) {
+      // Skip if there are no data.
+      if (!data) {
+        return;
+      }
       var results_count = data['media'].length;
       var overall_count = data['overall_count'];
       var folder = $('#'+data['folder_loaded']);
@@ -265,7 +274,7 @@
             var input = $('input', media);
             // toggle selection
             $('.media-item', media).toggleClass('selected');
-            input.attr('checked', input.attr('checked') == false);
+            input.attr('checked', $('.media-item', media).hasClass('selected'));
             // check for single-selection
             if(!Drupal.settings.media_browser_plus.multiselect) {
               // and remove all other selections
@@ -306,10 +315,8 @@
       }
     },
     toggleSubfolders: function (event) {
-      // Grab folder.
-      var $item = $(this);
-      // Toggle the display of its <ul> elements.
-      $item.parent().children('ul').toggleClass('hidden');
+      // Toggle the display of subfolders.
+      $(this).siblings().children('ul').toggleClass('hidden');
       return false;
     },
     loadPreview: function (id) {
